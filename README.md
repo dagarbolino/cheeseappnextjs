@@ -95,7 +95,7 @@ cheese-app/
 
 ## 👤 Contact
 
-Développé par [DINCQ Alexandre](https://github.com/dincq)
+Développé par [DINCQ Alexandre](https://github.com/dagarbolino)
 
 ## 📝 License
 
