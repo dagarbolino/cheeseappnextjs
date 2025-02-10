@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Au Beurre Noisette - Site Web
 
-## Getting Started
+Site web vitrine pour une fromagerie artisanale des Hauts-de-France, développé avec Next.js 13+ et TypeScript.
 
-First, run the development server:
+## 🧀 Présentation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Une plateforme moderne pour présenter les produits et services d'une fromagerie artisanale, mettant en avant :
+- Plus de 70 variétés de fromages
+- Présence sur 7 marchés hebdomadaires
+- Tradition depuis 1950
+- Service de commandes et livraisons
+
+## 🛠 Stack Technique
+
+### Frontend
+- **Framework**: Next.js 13+ (App Router)
+- **Langage**: TypeScript
+- **Styling**: 
+  - Tailwind CSS
+  - Composants personnalisés
+  - Thème personnalisé (couleurs cheese/cream)
+- **Animations**: 
+  - Intersection Observer API
+  - Animations au scroll
+  - Transitions fluides
+- **Responsive**: Design mobile-first
+- **Thème**: Support mode clair/sombre
+
+## 📁 Structure du Projet
+
+```text
+cheese-app/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx                    # Page d'accueil
+│   │   ├── nos-fromages/              # Catalogue fromages
+│   │   ├── recettes/                  # Recettes
+│   │   ├── marches/                   # Marchés
+│   │   ├── commandes-et-livraisons/   # Commandes
+│   │   ├── biographie/                # Histoire
+│   │   └── mentions-legales/          # Mentions légales
+│   ├── components/
+│   │   ├── Header.tsx                 # Navigation
+│   │   ├── Footer.tsx                 # Pied de page
+│   │   ├── ThemeToggle.tsx           # Switch mode sombre
+│   │   └── ScrollAnimation.tsx        # Animations scroll
+│   ├── types/
+│   │   └── cheese.ts                  # Types données
+│   └── source/
+│       └── api.ts                     # Config API
+├── public/
+│   └── patterns/                      # Images motifs
+└── tailwind.config.js                 # Config Tailwind
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Fonctionnalités
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Pages
+- **Accueil**: Présentation générale et sélection du moment
+- **Nos Fromages**: Catalogue complet des fromages
+- **Recettes**: Suggestions de recettes et conseils
+- **Marchés**: Localisation et horaires des marchés
+- **Commandes**: Système de commandes et livraisons
+- **Biographie**: Histoire de l'entreprise
+- **Mentions Légales**: Informations légales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Design
+- Mode sombre/clair
+- Animations au scroll
+- Design responsive
+- Navigation intuitive
+- Performance optimisée
+- SEO optimisé
 
-## Learn More
+## 🎯 Caractéristiques Techniques
 
-To learn more about Next.js, take a look at the following resources:
+- **Performance**:
+  - Images optimisées
+  - Chargement différé
+  - Animations fluides
+- **Accessibilité**:
+  - Support clavier
+  - ARIA labels
+  - Contraste vérifié
+- **SEO**:
+  - Meta tags dynamiques
+  - Structure sémantique
+  - Sitemap XML
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📱 Responsive Design
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Mobile: < 768px
+- Tablette: 768px - 1024px
+- Desktop: > 1024px
 
-## Deploy on Vercel
+## 👤 Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Développé par [DINCQ Alexandre](https://github.com/dincq)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
+
+MIT License - voir le fichier [LICENSE.md](LICENSE.md) pour plus de détails
