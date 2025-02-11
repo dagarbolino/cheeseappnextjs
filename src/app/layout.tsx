@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Au Beurre Noisette - Fromages des Hauts-de-France',
-  description: 'Découvrez notre sélection de fromages artisanaux',
+  description: 'Découvrez notre sélection de fromages',
 };
 
 export default function RootLayout({

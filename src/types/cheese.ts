@@ -1,3 +1,38 @@
+interface Fromage {
+  nom: string;
+  description: string;
+  image: number;
+  image_alt_text: string;
+  category: string;
+  type_of_milk: string;
+  origin: string;
+  raw_milk: boolean;
+  imageMeta?: {
+    meta: {
+      download_url: string;
+    };
+  };
+}
+
+export interface FromageItem {
+  type: 'fromage';
+  value: Fromage;
+  id: string;
+}
+
+export interface CheesePage {
+  id: number;
+  meta: {
+    type: string;
+    detail_url: string;
+    html_url: string | null;
+    slug: string;
+  };
+  title: string;
+  introduction: string;
+  fromages: FromageItem[];
+}
+
 export interface CheesePageData {
   id: number;
   meta: {
@@ -30,27 +65,5 @@ export interface CheesePageData {
     };
     id: string;
   }>;
-  body: Array<{
-    type: "cta" | "section";
-    value: {
-      heading: string;
-      link?: Array<{
-        type: "internal";
-        value: {
-          page: number;
-          title: string;
-        };
-        id: string;
-      }>;
-      description?: string;
-      content?: Array<{
-        type: "paragraph";
-        value: string;
-        id: string;
-      }>;
-    };
-    id: string;
-  }>;
-  featured_section_title: string;
-  page_related_pages: any[];
-} 
+  fromages: FromageItem[];
+}

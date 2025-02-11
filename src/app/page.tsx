@@ -1,6 +1,8 @@
 import { API_CONFIG } from '@/source/api';
-import { CheesePageData } from '@/types/cheese';
+import { getRandomCheeses } from '@/utils/cheese';
+import Image from 'next/image';
 import Link from 'next/link';
+import { CheesePageData } from '../types/cheese';
 
 async function getData(): Promise<CheesePageData> {
   const res = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.HOME_PAGE}`, {
@@ -14,8 +16,11 @@ async function getData(): Promise<CheesePageData> {
   return res.json();
 }
 
+
+
 export default async function Home() {
   const data = await getData();
+  const selectedCheeses = await getRandomCheeses(3);
 
   return (
     <main className="min-h-screen bg-cream-50 dark:bg-gray-900">
@@ -135,39 +140,39 @@ export default async function Home() {
           <section className="py-16 animate-fade-in">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-serif font-bold text-center text-cheese-600 dark:text-cheese-500 mb-12 animate-slide-up">
-                Notre Sélection du Moment
+                Notre Sélection de la semaine
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="p-6">
-                    <h3 className="text-xl font-serif font-semibold text-gray-800 dark:text-white mb-2">Maroilles AOP</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">Le roi des fromages du Nord, au caractère affirmé</p>
-                    <Link href="/nos-fromages" className="text-cheese-600 dark:text-cheese-500 hover:text-cheese-700 dark:hover:text-cheese-400 transition-colors group">
-                      Découvrir
-                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-                    </Link>
+                {selectedCheeses.map((cheese) => (
+                  <div key={cheese.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 md:h-64">
+                      <Image
+                        src={`${API_CONFIG.BASE_URL}${cheese.value.imageMeta.meta.download_url}`}
+                        alt={cheese.value.image_alt_text || cheese.value.nom}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-contain hover:scale-105 transition-transform duration-300"
+                        quality={95}
+                        priority
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-serif font-semibold text-gray-800 dark:text-white mb-2">
+                        {cheese.value.nom}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        {cheese.value.description.substring(0, 100)}...
+                      </p>
+                      <Link
+                        href={`/nos-fromages/${cheese.id}`}
+                        className="text-cheese-600 dark:text-cheese-500 hover:text-cheese-700 dark:hover:text-cheese-400 transition-colors group"
+                      >
+                        Découvrir
+                        <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="p-6">
-                    <h3 className="text-xl font-serif font-semibold text-gray-800 dark:text-white mb-2">Mimolette Extra-Vieille</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">18 mois d&apos;affinage pour un goût intense</p>
-                    <Link href="/nos-fromages" className="text-cheese-600 dark:text-cheese-500 hover:text-cheese-700 dark:hover:text-cheese-400 transition-colors group">
-                      Découvrir
-                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="p-6">
-                    <h3 className="text-xl font-serif font-semibold text-gray-800 dark:text-white mb-2">Vieux Lille</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">Une spécialité régionale unique</p>
-                    <Link href="/nos-fromages" className="text-cheese-600 dark:text-cheese-500 hover:text-cheese-700 dark:hover:text-cheese-400 transition-colors group">
-                      Découvrir
-                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </section>
@@ -231,3 +236,6 @@ export default async function Home() {
     </main>
   );
 }
+
+// Revalider la page toutes les 12 heures
+export const revalidate = 43200;
