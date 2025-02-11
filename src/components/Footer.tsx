@@ -114,7 +114,7 @@ export default function Footer() {
                 href="https://github.com/dincq" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-cheese-600 dark:text-cheese-500 hover:text-cheese-700 dark:hover:text-cheese-400 transition-colors"
+                className="text-cheese-700 dark:text-cheese-700 hover:text-cheese-800 dark:hover:text-cheese-400 transition-colors"
               >
                 DINCQ Alexandre
               </a>

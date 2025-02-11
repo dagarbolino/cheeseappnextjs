@@ -1,14 +1,14 @@
 "use client";
-import { useState, useEffect } from 'react';
 import { API_BASE_URL, fetchCheesePage } from '@/services/api';
-import CheeseFilters from './CheeseFilters';
-import { FromageItem } from '@/types/cheese';
+import { CheesePage, FromageItem } from '@/types/cheese';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import CheeseFilters from './CheeseFilters';
 
 export default function CheeseList() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<CheesePage | null>(null);
   const [filteredCheeses, setFilteredCheeses] = useState<FromageItem[]>([]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function CheeseList() {
           />
         </div>
 
-        <CheeseFilters 
+        <CheeseFilters
           fromages={data.fromages}
           onFilter={setFilteredCheeses}
         />

@@ -20,7 +20,6 @@ export default function CheeseFilters({ fromages, onFilter }: CheeseFiltersProps
     type_of_milk: [...new Set(fromages.map(cheese => {
       // Nettoyer et corriger le type de lait
       const type = cheese.value.type_of_milk
-        .replace('vache_brebis', 'vache')  // ou la valeur correcte
         .replace('_', ' ');
       return type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
     }))].sort(),
@@ -38,7 +37,7 @@ export default function CheeseFilters({ fromages, onFilter }: CheeseFiltersProps
     const newOrigins = selectedFilters.origins.includes(origin)
       ? selectedFilters.origins.filter(o => o !== origin)
       : [...selectedFilters.origins, origin];
-    
+
     setSelectedFilters(prev => ({ ...prev, origins: newOrigins }));
     handleFilter({ ...selectedFilters, origins: newOrigins });
   };
@@ -46,16 +45,15 @@ export default function CheeseFilters({ fromages, onFilter }: CheeseFiltersProps
   const handleFilter = (filters = selectedFilters) => {
     const filtered = fromages.filter(cheese => {
       const cleanMilkType = cheese.value.type_of_milk
-        .replace('vache_brebis', 'vache')  // ou la valeur correcte
         .replace('_', ' ');
 
       const matchesSearch = cheese.value.nom.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesType = !filters.type_of_milk || 
+      const matchesType = !filters.type_of_milk ||
         formatMilkType(cleanMilkType) === filters.type_of_milk;
-      const matchesCategory = !filters.category || 
+      const matchesCategory = !filters.category ||
         cheese.value.category.trim().toLowerCase() === filters.category.trim().toLowerCase();
-      const matchesOrigin = filters.origins.length === 0 || 
-        filters.origins.some(origin => 
+      const matchesOrigin = filters.origins.length === 0 ||
+        filters.origins.some(origin =>
           cheese.value.origin.trim().toLowerCase().includes(origin.trim().toLowerCase())
         );
       const matchesRawMilk = filters.raw_milk === null || cheese.value.raw_milk === filters.raw_milk;
@@ -76,7 +74,11 @@ export default function CheeseFilters({ fromages, onFilter }: CheeseFiltersProps
       <div className="space-y-4">
         {/* Barre de recherche */}
         <div>
+          <label htmlFor="search-cheese" className="sr-only">
+            Rechercher un fromage
+          </label>
           <input
+            id="search-cheese"
             type="text"
             placeholder="Rechercher un fromage..."
             value={searchTerm}
@@ -181,15 +183,15 @@ export default function CheeseFilters({ fromages, onFilter }: CheeseFiltersProps
         <button
           onClick={() => {
             setSearchTerm('');
-            setSelectedFilters({ 
-              type_of_milk: '', 
-              category: '', 
+            setSelectedFilters({
+              type_of_milk: '',
+              category: '',
               origins: [],
-              raw_milk: null 
+              raw_milk: null
             });
             onFilter(fromages);
           }}
-          className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
+          className="px-4 py-2 bg-yellow-700 text-white rounded-lg hover:bg-yellow-800 transition-colors"
         >
           Réinitialiser les filtres
         </button>
