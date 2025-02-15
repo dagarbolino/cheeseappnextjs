@@ -28,21 +28,17 @@ export default function CheeseListClient({ initialFromages }: CheeseListClientPr
             href={`/nos-fromages/${cheese.id}`}
             className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="relative h-48 p-4">
+            <div className="relative h-48 md:h-64">
               {cheese.value.imageMeta ? (
-                <div className="relative h-full w-full">
-                  <Image
-                    src={`${API_BASE_URL}${cheese.value.imageMeta.meta.download_url}`}
-                    alt={cheese.value.image_alt_text || cheese.value.nom}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-contain group-hover:scale-105 transition-transform duration-300"
-                    quality={75}
-                    loading="lazy"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkLzYvLy0vLi44QjxAOEA4Nzo0PkNCRU5ETl9aX3OChIaHiYGJn5P/2wBDARUXFx8eHx4kHR0kTzQvNE9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                  />
-                </div>
+                <Image
+                  src={`${API_BASE_URL}${cheese.value.imageMeta.meta.download_url}`}
+                  alt={cheese.value.image_alt_text || cheese.value.nom}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-contain group-hover:scale-105 transition-transform duration-300"
+                  quality={95}
+                  priority
+                />
               ) : (
                 <div className="w-full h-full bg-yellow-50 dark:bg-gray-700 flex items-center justify-center">
                   <span className="text-yellow-600 dark:text-yellow-400">Image non disponible</span>

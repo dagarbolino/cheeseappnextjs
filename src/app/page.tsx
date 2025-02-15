@@ -37,13 +37,13 @@ export default async function Home() {
           {/* Hero CTA */}
           <div className="flex gap-4">
             {data.hero_cta.map((cta) => (
-              <a
+              <Link
                 key={cta.id}
                 href="/nos-fromages"
                 className="inline-block bg-yellow-600 text-white px-8 py-4 rounded-lg hover:bg-yellow-700 transition-colors text-xl font-medium"
               >
                 {cta.value.title}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -147,7 +147,7 @@ export default async function Home() {
                   <div key={cheese.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 md:h-64">
                       <Image
-                        src={`${API_CONFIG.BASE_URL}${cheese.value.imageMeta.meta.download_url}`}
+                        src={`${API_CONFIG.BASE_URL}${cheese.value.imageMeta?.meta.download_url}`}
                         alt={cheese.value.image_alt_text || cheese.value.nom}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

@@ -11,7 +11,13 @@ const nextConfig = {
   },
   typescript: {
     tsconfigPath: './tsconfig.json'
+  },
+  webpack: (config, { dev }) => {
+    if (!dev) {
+      config.devtool = false;
+    }
+    return config;
   }
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
