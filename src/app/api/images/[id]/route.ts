@@ -10,7 +10,7 @@ export async function GET(
     const response = await fetch(`https://cheeseapi.alex-webdev.fr/api/v2/images/${id}/`);
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch image data' }, { status: 500 });
   }
 } 
